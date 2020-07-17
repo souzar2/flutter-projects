@@ -70,7 +70,7 @@ class _HomeState extends State<Home> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Lista de Tarefas"),
-          backgroundColor: Colors.blueAccent,
+          backgroundColor: Colors.green,
         centerTitle: true,
       ),
       body: Column(
@@ -81,17 +81,28 @@ class _HomeState extends State<Home> {
               children: <Widget>[
                 Expanded(
                   child: TextField(
+                    style: TextStyle(color: Colors.blueGrey, fontSize: 20),
                     controller: _toDoController,
                     decoration: InputDecoration(
                       labelText: "Nova Tarefa",
-                      labelStyle: TextStyle(color: Colors.blueAccent),
+                      labelStyle: TextStyle(color: Colors.green, fontSize: 18),
+                      alignLabelWithHint: true,
                     ),
                   ),
                 ),
                 RaisedButton(
-                  color: Colors.blueAccent,
-                  child: Text("ADD"),
+                  color: Colors.green,
+                  //child: Text("+", style: TextStyle(fontSize: 10),),
+
+
                   textColor: Colors.white,
+                  padding: EdgeInsets.all(15.0),
+                  shape: CircleBorder(),
+                  child: Icon(Icons.add, size: 26,),
+                  /*shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                      side: BorderSide(color: Colors.green),
+                  ),*/
                   onPressed: _addToDo,
                 ),
 
@@ -122,11 +133,15 @@ class _HomeState extends State<Home> {
     ),
     direction: DismissDirection.startToEnd,
     child: CheckboxListTile(
-      title: Text(_toDoList[index]["title"]),
+      checkColor: Colors.white,
+      activeColor: Colors.green,
+      title: Text(_toDoList[index]["title"], style: TextStyle(fontSize: 20, color: Colors.grey),),
       value: _toDoList[index]["ok"],
       secondary: CircleAvatar(
+        backgroundColor: Colors.green,
           child: Icon(_toDoList[index]["ok"]?
-          Icons.check : Icons.error,)
+          Icons.check : Icons.error,color: Colors.white,),
+
       ),
       onChanged: (c){
         setState(() {
